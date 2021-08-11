@@ -1,5 +1,6 @@
 package com.haubui.sample.config;
 
+import com.haubui.sample.common.constants.AuthoritiesConstant;
 import com.haubui.sample.security.jwt.JWTConfigurer;
 import com.haubui.sample.security.jwt.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers("/api/**/**/verify-account").permitAll()
-            .antMatchers("/api/**").hasAuthority("ROLE_USER")
+            .antMatchers("/api/**").hasAuthority(AuthoritiesConstant.ROLE_USER)
             .antMatchers("/api/**").authenticated()
             .and()
             .httpBasic()
