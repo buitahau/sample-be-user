@@ -1,5 +1,6 @@
 package com.haubui.sample.web.rest.controller;
 
+import com.haubui.sample.client.role.service.RoleClient;
 import com.haubui.sample.common.exception.GeneralException;
 import com.haubui.sample.service.UserService;
 import com.haubui.sample.util.mapper.UserMapperUtil;
@@ -17,6 +18,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
+
+    @Autowired
+    private RoleClient roleClient;
 
     @PostMapping("/add")
     public ResponseEntity<UserResponse> add(@RequestBody UserDto userDto) {
@@ -40,7 +44,9 @@ public class UserController {
 
     @PostMapping("/verify-account")
     public ResponseEntity<UserResponse> verifyAccount(@RequestBody UserDto userDto) throws GeneralException {
-        return ResponseEntity.ok(UserMapperUtil.parseToResponse(_userService.verifyAccount(userDto)));
+        UserResponse userResponse = UserMapperUtil.parseToResponse(_userService.verifyAccount(userDto));
+        userResponse.setRoles(roleClient.getRoles(userResponse.getId()));
+        return ResponseEntity.ok(userResponse);
     }
 
     @Autowired

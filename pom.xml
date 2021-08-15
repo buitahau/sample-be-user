@@ -117,6 +117,11 @@
             <artifactId>common</artifactId>
             <version>${common-service.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.haubui.sample</groupId>
+            <artifactId>remote-api</artifactId>
+            <version>${common-service.version}</version>
+        </dependency>
 	</dependencies>
 
 	<build>

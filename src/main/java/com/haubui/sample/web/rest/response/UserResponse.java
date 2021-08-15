@@ -1,6 +1,10 @@
 package com.haubui.sample.web.rest.response;
 
+import com.haubui.sample.client.role.domain.RoleResponse;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserResponse implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -12,6 +16,8 @@ public class UserResponse implements Serializable {
     private String email;
 
     private String status;
+
+    private List<RoleResponse> roles = new ArrayList<>();
 
     public UserResponse() {
     }
@@ -53,5 +59,13 @@ public class UserResponse implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<RoleResponse> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleResponse> roles) {
+        this.roles = roles;
     }
 }
